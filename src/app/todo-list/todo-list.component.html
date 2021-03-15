@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-center row">
+    <div class="col-md-10">
+      <div class="p-4 bg-white notes">
+        <div class="col-md-10 d-flex flex-row align-items-center notes-title">
+          <h2>{{ todoList?.name }}</h2>
+        </div>
+        <div
+          class="col-md-2 d-flex flex-row align-items-center align-content-center"
+          style="margin-top: 30px"
+        >
+          <span class="rounded info">{{ todoList?.created_date }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <input
+            class="form-control form-control-lg border-0 add-todo-input bg-transparent rounded"
+            type="text"
+            [(ngModel)]="title"
+            placeholder="Add new .."
+          />
+        </div>
+        <div class="col-md-2">
+          <button type="button" (click)="addTask()" class="btn btn-primary">
+            Add
+          </button>
+        </div>
+      </div>
+      <div class="p-3 bg-white">
+        <div class="align-items-center row" *ngFor="let todo of todoData">
+          <div class="col-md-10">
+            <label>
+              <input
+                type="checkbox"
+                class="option-input radio"
+                [checked]="todo.completed"
+                (click)="completeTask(todo.id)"
+              />
+              <span
+                class="label-text"
+                [style.text-decoration-line]="
+                  todo.completed ? 'line-through' : 'none'
+                "
+                >{{ todo.title }}</span
+              >
+            </label>
+          </div>
+          <div class="col-md-2" style="margin-top: 15px; color: red">
+            <span (click)="removeTask(todo.id)"
+              ><i class="fa fa-times" aria-hidden="true"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
